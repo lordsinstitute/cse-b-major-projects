@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keyboard Piano</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="free-play-page">
+  <main class="container free-play-container">
+    <header class="free-play-header">
+      <div class="brand-block">
+        <p class="eyebrow">DIGITAL PIANO</p>
+        <h1>🎹 Keyboard Piano</h1>
+        <p class="brand-subtitle">Play <span>•</span> Practice <span>•</span> Learn</p>
+      </div>
+      <a href="game/" class="game-link">🎮 <span>Game Mode</span></a>
+    </header>
+
+    <section class="shortcut-strip" aria-label="Keyboard shortcuts">
+      <div class="shortcut-item"><span class="shortcut-label">Keyboard</span><strong>Z–M / A–L / Q–]</strong></div>
+      <div class="shortcut-divider" aria-hidden="true"></div>
+      <div class="shortcut-item"><span class="shortcut-label">Octave</span><strong>⌥ ← / →</strong></div>
+      <details class="keyboard-help">
+        <summary><span class="help-icon" aria-hidden="true">ⓘ</span> <span class="help-text">Keyboard shortcuts</span></summary>
+        <div class="keyboard-help-popover">
+          <p><strong>Bottom row</strong> Z X C V B N M , . /</p>
+          <p><strong>Home row</strong> A S D F G H J K L ; '</p>
+          <p><strong>Top row</strong> Q W E R T Y U I O P [ ]</p>
+          <p><strong>Octave</strong> Option + ← / →</p>
+        </div>
+      </details>
+    </section>
+
+    <section class="piano-stage" aria-label="88-key piano">
+      <div class="stage-heading">
+        <span class="section-label">88-KEY PIANO</span>
+        <span class="stage-note">Click any key or use your keyboard</span>
+      </div>
+      <div class="octave-controls">
+        <button id="octave-down" type="button" aria-label="Shift keyboard range down one octave">◀</button>
+        <span id="octave-label"></span>
+        <button id="octave-up" type="button" aria-label="Shift keyboard range up one octave">▶</button>
+      </div>
+      <div class="piano-wrapper">
+        <div class="piano" id="piano"></div>
+      </div>
+    </section>
+
+    <section class="instrument-bar controls" aria-label="Instrument controls">
+      <div class="control-group instrument-control">
+        <label for="instrument">🎹 Instrument</label>
+      <select id="instrument">
+        <option value="acoustic-piano" selected>Grand Piano (Real Samples)</option>
+        <option value="piano">Electric Piano (Synth)</option>
+        <option value="organ">Organ</option>
+        <option value="synth">Synth Lead</option>
+        <option value="bell">Bell</option>
+        <option value="strings">Strings</option>
+        <option value="marimba">Marimba</option>
+        <option value="flute">Flute</option>
+        <option value="brass">Brass</option>
+        <option value="pad">Warm Pad</option>
+        <option value="music_box">Music Box</option>
+        </select>
+      </div>
+      <div class="control-group volume-control">
+        <label for="volume">🔊 Volume</label>
+        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" aria-label="Volume">
+      </div>
+    </section>
+
+    <section class="song-card" aria-label="Song controls">
+      <div class="song-card-heading">
+        <div>
+          <p class="section-label">SONG</p>
+          <p class="song-caption">Choose a melody to preview or practice</p>
+        </div>
+        <span class="song-status-dot" aria-hidden="true"></span>
+      </div>
+      <div class="song-controls controls">
+        <select id="song-select" aria-label="Choose a song"></select>
+        <button id="play-song" class="secondary-action" type="button">▶ Play</button>
+        <button id="stop-song" class="quiet-action" type="button">■ Stop</button>
+        <a id="practice-link" class="practice-link primary-action" href="#">🎯 Practice</a>
+      </div>
+    </section>
+
+    <p class="status" id="status">Loading piano samples…</p>
+  </main>
+
+  <script src="vendor/Tone.js"></script>
+  <script src="note-utils.js"></script>
+  <script src="songs.js"></script>
+  <script src="keyboard-mapping.js"></script>
+  <script src="audio-engine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

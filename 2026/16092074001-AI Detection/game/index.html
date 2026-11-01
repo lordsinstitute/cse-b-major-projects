@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="../">
+<title>Game Mode - Keyboard Piano</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="practice.css">
+<link rel="stylesheet" href="game.css">
+</head>
+<body class="game-page">
+  <main class="container game-container game-workspace">
+    <header class="game-header">
+      <a href="./" class="back-link" id="exit-game">← Back to Songs</a>
+      <div class="game-header-copy">
+        <p class="game-eyebrow">🎮 GAME MODE</p>
+        <h1>Pass &amp; Play</h1>
+        <p class="hint">Pass the device between players. Nothing is saved.</p>
+      </div>
+    </header>
+
+    <section id="phase-mode-select" class="game-phase">
+      <p class="phase-kicker">GET STARTED</p>
+      <p class="phase-heading">How are you playing?</p>
+      <p class="phase-description">Choose a solo run or pass the piano around.</p>
+      <div class="mode-choices">
+        <button id="solo-btn" type="button" class="mode-choice primary-btn">
+          <span class="mode-choice-title">Solo</span>
+          <span class="mode-choice-description">Play by yourself</span>
+        </button>
+        <button id="friends-btn" type="button" class="mode-choice primary-btn">
+          <span class="mode-choice-title">With Friends</span>
+          <span class="mode-choice-description">Pass &amp; play, up to 6 players</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="phase-player-setup" class="game-phase" hidden>
+      <p class="phase-heading">Players <span class="muted">(2 to 6)</span></p>
+      <div id="player-list" class="player-list"></div>
+      <form class="player-add-row" id="player-add-form">
+        <input type="text" id="player-name-input" placeholder="Player name" maxlength="20" aria-label="New player name">
+        <button type="submit" id="add-player-btn">+ Add Player</button>
+      </form>
+      <p class="game-error" id="player-error" hidden></p>
+      <button id="confirm-players-btn" type="button" class="primary-btn">Start Game</button>
+    </section>
+
+    <section id="phase-song-select" class="game-phase" hidden>
+      <p class="phase-kicker">SOLO / SONG SETUP</p>
+      <p class="phase-heading">Choose Your Song</p>
+      <p class="phase-description">Select a melody to play and score.</p>
+      <div class="song-select-row">
+        <select id="song-select"></select>
+        <button id="start-game-btn" type="button" class="primary-btn">Start Game</button>
+      </div>
+      <details class="scoring-rules">
+        <summary>How scoring works</summary>
+        <div class="scoring-rules-body" id="scoring-rules-body"></div>
+      </details>
+    </section>
+
+    <section id="phase-turn-ready" class="game-phase" hidden>
+      <p class="phase-kicker">NEXT PLAYER</p>
+      <h2 id="ready-heading">🎹 <span id="ready-player-name"></span>'s Turn</h2>
+      <p class="phase-heading">Pass the device to <strong id="ready-player-name-2"></strong>.</p>
+      <button id="ready-btn" type="button" class="primary-btn"></button>
+    </section>
+
+    <section id="phase-countdown" class="game-phase" hidden>
+      <p class="phase-kicker">GET READY</p>
+      <div class="countdown-number" id="countdown-number">3</div>
+    </section>
+
+    <section id="phase-playing" class="game-phase" hidden>
+      <p class="phase-kicker">LIVE TURN</p>
+      <h2 id="playing-song-title"></h2>
+      <p class="turn-badge">🎹 <strong id="playing-player-name"></strong>'s Turn</p>
+      <p class="start-hint" id="game-start-hint" hidden></p>
+
+      <div class="stats-bar" id="game-stats-bar" hidden>
+        <span>Accuracy <strong id="game-accuracy-label">—</strong></span>
+        <span aria-hidden="true">·</span>
+        <span>Mistakes <strong id="game-mistakes-label">0</strong></span>
+      </div>
+
+      <div class="progress-panel">
+        <div class="progress-status" id="game-progress-status">
+          <span>Press <strong id="game-current-label">—</strong></span>
+          <span>Next: <strong id="game-next-label">—</strong></span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="game-progress-fill"></div>
+        </div>
+        <div class="progress-count" id="game-progress-count">0 / 0 notes</div>
+      </div>
+
+      <div class="practice-sequence-wrapper" id="game-sequence-wrapper">
+        <div class="practice-sequence" id="game-sequence"></div>
+      </div>
+
+      <div class="piano-wrapper">
+        <div class="piano practice-piano" id="game-piano"></div>
+      </div>
+
+      <div class="controls">
+        <button id="game-pause-btn" type="button" aria-label="Pause turn">⏸ Pause</button>
+        <button id="game-restart-btn" type="button" aria-label="Restart this turn">↺ Restart Turn</button>
+      </div>
+
+      <aside class="live-leaderboard" id="live-leaderboard" hidden>
+        <h3>Leaderboard</h3>
+        <ol id="live-leaderboard-list"></ol>
+      </aside>
+
+      <p class="status" id="status">Loading piano samples…</p>
+    </section>
+
+    <section id="phase-turn-results" class="game-phase" hidden>
+      <p class="phase-kicker">TURN COMPLETE</p>
+      <h2 id="results-heading"></h2>
+      <div class="result-stats" id="result-stats"></div>
+      <div class="current-leader" id="current-leader"></div>
+      <div class="next-player-box" id="next-player-box">
+        <p class="phase-heading">Next Player</p>
+        <h3 id="next-player-name"></h3>
+        <p>Pass the device to <strong id="next-player-name-2"></strong>.</p>
+        <button id="next-ready-btn" type="button" class="primary-btn"></button>
+      </div>
+    </section>
+
+    <section id="phase-final-results" class="game-phase" hidden>
+      <p class="phase-kicker">FINAL RESULTS</p>
+      <h2>🎉 GAME OVER 🎉</h2>
+      <div class="winner-box" id="winner-box"></div>
+      <h3 class="phase-heading">Final Leaderboard</h3>
+      <ol id="final-leaderboard-list" class="final-leaderboard-list"></ol>
+      <div class="controls">
+        <button id="same-players-btn" type="button">Same Players</button>
+        <button id="new-game-btn" type="button">New Game</button>
+        <a href="./" class="practice-link">Back to Songs</a>
+      </div>
+    </section>
+
+    <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  </main>
+
+  <script src="vendor/Tone.js"></script>
+  <script src="note-utils.js"></script>
+  <script src="songs.js"></script>
+  <script src="keyboard-mapping.js"></script>
+  <script src="audio-engine.js"></script>
+  <script src="game-scoring.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
