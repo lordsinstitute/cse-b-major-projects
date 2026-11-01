@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<base href="../">
+<title>Practice Mode - Keyboard Piano</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="practice.css">
+</head>
+<body class="practice-page">
+  <main class="container practice-container practice-workspace">
+    <a href="./" class="back-link">← Back to Songs</a>
+
+    <header class="practice-header">
+      <p class="practice-eyebrow">PRACTICE</p>
+      <h1 id="song-title">Loading…</h1>
+      <p class="hint" id="song-instruction">Follow the highlighted keys and play the song.</p>
+    </header>
+
+    <section class="practice-status-card" aria-label="Practice status">
+      <div class="stats-bar" id="stats-bar">
+        <div class="stat-item"><span>Loop</span><strong id="loop-label">1</strong></div>
+        <div class="stat-item"><span>Accuracy</span><strong id="accuracy-label">—</strong></div>
+        <div class="stat-item"><span>Mistakes</span><strong id="mistakes-label">0</strong></div>
+      </div>
+    </section>
+
+    <section class="target-panel" aria-label="Current practice target">
+      <p class="target-label">CURRENT TARGET</p>
+      <p class="start-hint" id="start-hint" hidden></p>
+      <div class="progress-panel">
+        <div class="progress-status" id="progress-status">
+          <span>Press <strong id="current-note-label">—</strong></span>
+          <span class="next-note">Next <strong id="next-note-label">—</strong></span>
+        </div>
+        <div class="progress-count" id="progress-count">0 / 0 notes</div>
+        <div class="progress-bar-track" aria-hidden="true">
+          <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sequence-section" aria-label="Note sequence">
+      <div class="sequence-heading">
+        <p class="section-label">NOTE SEQUENCE</p>
+        <span>Follow the highlighted key</span>
+      </div>
+      <div class="practice-sequence-wrapper" id="practice-sequence-wrapper">
+        <div class="practice-sequence" id="practice-sequence"></div>
+      </div>
+    </section>
+
+    <section class="practice-piano-stage" aria-label="Practice piano">
+      <div class="piano-stage-heading">
+        <p class="section-label">PIANO</p>
+        <span>Use your keyboard or tap a key</span>
+      </div>
+      <div class="piano-wrapper">
+        <div class="piano practice-piano" id="practice-piano"></div>
+      </div>
+    </section>
+
+    <section class="practice-sound-controls" aria-label="Practice sound controls">
+      <label for="practice-instrument">🎹 Instrument</label>
+      <select id="practice-instrument">
+        <option value="acoustic-piano" selected>Grand Piano (Real Samples)</option>
+        <option value="piano">Electric Piano (Synth)</option>
+        <option value="organ">Organ</option>
+        <option value="synth">Synth Lead</option>
+        <option value="bell">Bell</option>
+        <option value="strings">Strings</option>
+        <option value="marimba">Marimba</option>
+        <option value="flute">Flute</option>
+        <option value="brass">Brass</option>
+        <option value="pad">Warm Pad</option>
+        <option value="music_box">Music Box</option>
+      </select>
+      <label for="practice-volume">🔊 Volume</label>
+      <input type="range" id="practice-volume" min="0" max="1" step="0.01" value="0.6" aria-label="Practice volume">
+    </section>
+
+    <div class="practice-controls controls">
+      <button id="pause-btn" type="button" aria-label="Pause practice">⏸ Pause</button>
+      <button id="restart-btn" type="button" aria-label="Restart practice from the beginning">↺ Restart</button>
+    </div>
+
+    <p class="status" id="status">Loading piano samples…</p>
+  </main>
+
+  <script src="vendor/Tone.js"></script>
+  <script src="note-utils.js"></script>
+  <script src="songs.js"></script>
+  <script src="keyboard-mapping.js"></script>
+  <script src="audio-engine.js"></script>
+  <script src="practice.js"></script>
+</body>
+</html>
