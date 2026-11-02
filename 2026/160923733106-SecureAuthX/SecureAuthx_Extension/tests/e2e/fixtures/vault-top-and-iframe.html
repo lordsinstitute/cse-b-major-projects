@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><title>SecureAuthX E2E — top-level login plus iframes</title></head>
+<body>
+  <h1>Top-level login, a same-origin iframe, and a cross-origin iframe</h1>
+  <form onsubmit="return false">
+    <input type="email" id="topUser" autocomplete="username" />
+    <input type="password" id="topPassword" />
+  </form>
+  <iframe id="sameOrigin" src="vault-login-target.html" width="420" height="140" title="same-origin login"></iframe>
+  <iframe id="crossOrigin" width="420" height="140" title="cross-origin login (same hostname, different port)"></iframe>
+  <script>
+    const src = new URLSearchParams(location.search).get("crossSrc");
+    if (src) document.getElementById("crossOrigin").src = src;
+  </script>
+</body></html>

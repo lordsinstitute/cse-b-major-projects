@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><title>SecureAuthX E2E — unrelated fields</title></head>
+<body>
+  <h1>Login page full of unrelated inputs</h1>
+  <form id="siteSearch" onsubmit="return false"><input type="search" name="q" id="searchBox" /></form>
+  <form id="newsletter" onsubmit="return false"><input type="email" name="newsletter_email" id="newsletterEmail" /></form>
+  <form id="login" onsubmit="return false">
+    <input type="text" name="coupon_code" id="couponBox" />
+    <input type="text" name="captcha" id="captchaBox" />
+    <input type="text" name="search_users" id="searchUsersBox" />
+    <input type="text" name="login" id="realUser" />
+    <input type="password" id="realPassword" />
+    <input type="text" name="otp" id="otpAfterPassword" />
+  </form>
+</body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><title>SecureAuthX E2E — hidden/honeypot decoys</title></head>
+<body>
+  <h1>Login with hidden and honeypot decoy fields</h1>
+  <!-- Every decoy PRECEDES the real fields and many look like username fields, so a naive "first text input" fill would pick one. -->
+  <form onsubmit="return false">
+    <input type="text" name="username" id="decoyDisplayNone" style="display:none" />
+    <input type="text" name="email" id="decoyOffscreen" style="position:absolute;left:-9999px;top:0" />
+    <input type="text" name="login" id="decoyOpacity" style="opacity:0" />
+    <input type="text" name="user" id="decoyVisibility" style="visibility:hidden" />
+    <input type="hidden" name="account" id="decoyHiddenType" />
+    <input type="text" name="userid" id="decoyTiny" style="width:1px;height:1px;padding:0;border:0" />
+    <div hidden><input type="text" name="user_name" id="decoyInHiddenDiv" /></div>
+    <input type="password" id="decoyHiddenPassword" style="display:none" />
+    <input type="email" id="realUser" autocomplete="username" />
+    <input type="password" id="realPassword" />
+    <button type="submit">Log in</button>
+  </form>
+</body></html>
