@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/widget_background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SoulCare"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Wellness"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/widget_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="—"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/widget_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today — / — complete"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+
+        <Button
+            android:id="@+id/widget_btn_water"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Water"
+            android:textSize="12sp"
+            style="?android:attr/borderlessButtonStyle" />
+
+        <Button
+            android:id="@+id/widget_btn_mood"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mood"
+            android:textSize="12sp"
+            style="?android:attr/borderlessButtonStyle" />
+
+        <Button
+            android:id="@+id/widget_btn_checkin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Check-in"
+            android:textSize="12sp"
+            style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
+</LinearLayout>
