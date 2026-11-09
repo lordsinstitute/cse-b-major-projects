@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Alert",
+  "description": "Normalized alert format used across the SOC Analyst Platform. Every alert ingested from SIEM, EDR, or cloud audit logs is converted into this shape before it reaches the triage model or the investigation agent.",
+  "type": "object",
+  "required": [
+    "alert_id",
+    "timestamp",
+    "source",
+    "severity_raw",
+    "asset_id",
+    "description",
+    "raw_log"
+  ],
+  "properties": {
+    "alert_id": {
+      "type": "string",
+      "description": "Unique identifier for this alert. Generated at ingestion time if the source system doesn't provide one.",
+      "example": "alrt_8f3c1a2b"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the alert was generated, in ISO 8601 format (UTC).",
+      "example": "2026-08-03T14:32:10Z"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["SIEM", "EDR", "cloud_audit"],
+      "description": "Which system produced this alert."
+    },
+    "source_system": {
+      "type": "string",
+      "description": "Optional: the specific tool that generated it, e.g. 'Elastic Security', 'CICIDS_dataset', 'AWS_CloudTrail'.",
+      "example": "Elastic Security"
+    },
+    "severity_raw": {
+      "type": "string",
+      "description": "The severity/priority label as given by the source system, before ZeroSight re-scores it. Kept as a string since different tools use different scales (e.g. 'high', 'critical', '3').",
+      "example": "high"
+    },
+    "asset_id": {
+      "type": "string",
+      "description": "Identifier for the affected host, user, or resource (hostname, IP, username, or resource ARN).",
+      "example": "host-web-03"
+    },
+    "asset_criticality": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "unknown"],
+      "description": "Optional: how critical this asset is to the business, if known. Used as a feature by the triage model.",
+      "default": "unknown"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short human-readable summary of what the alert is about.",
+      "example": "Multiple failed SSH login attempts followed by a successful login"
+    },
+    "mitre_technique": {
+      "type": "string",
+      "description": "Optional: MITRE ATT&CK technique ID if already mapped, e.g. 'T1110' (Brute Force).",
+      "example": "T1110"
+    },
+    "raw_log": {
+      "type": "string",
+      "description": "The original, unmodified log line or JSON blob from the source system. Kept for citation/evidence purposes -- every claim the investigation agent makes must trace back to something in this field or a related alert's raw_log."
+    },
+    "related_alert_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Optional: IDs of other alerts that appear related (same asset, same time window, etc.), used for building the investigation timeline.",
+      "default": []
+    }
+  },
+  "additionalProperties": false
+}
